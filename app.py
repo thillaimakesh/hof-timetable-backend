@@ -7,9 +7,9 @@ app = Flask(__name__)
 
 # Map departments to their ICS URLs
 DEPARTMENT_URLS = {
-    "Software Engineering": "https://www3.primuss.de/stpl/index.php?FH=fhh&Language=de&mode=ical&Session=5a76cd513e52a4d20b724290d10d2eb2&User=tsudakaran&sem=8&type=4",
-    "Operational Excellence": "https://www3.primuss.de/stpl/index.php?FH=fhh&Language=de&mode=ical&Session=5a76cd513e52a4d20b724290d10d2eb2&User=tsudakaran&sem=8&type=1&typeid=5",
-    "Artificial Intelligence": "https://www3.primuss.de/stpl/index.php?FH=fhh&Language=de&mode=ical&Session=5a76cd513e52a4d20b724290d10d2eb2&User=tsudakaran&sem=8&type=1&typeid=251"
+    "software engineering": "https://www3.primuss.de/stpl/index.php?FH=fhh&Language=de&mode=ical&Session=5a76cd513e52a4d20b724290d10d2eb2&User=tsudakaran&sem=8&type=4",
+    "operational excellence": "https://www3.primuss.de/stpl/index.php?FH=fhh&Language=de&mode=ical&Session=5a76cd513e52a4d20b724290d10d2eb2&User=tsudakaran&sem=8&type=1&typeid=5",
+    "artificial intelligence": "https://www3.primuss.de/stpl/index.php?FH=fhh&Language=de&mode=ical&Session=5a76cd513e52a4d20b724290d10d2eb2&User=tsudakaran&sem=8&type=1&typeid=251"
 }
 
 DEFAULT_ICAL_URL = "https://www3.primuss.de/stpl/index.php?FH=fhh&Language=de&mode=ical&Session=5a76cd513e52a4d20b724290d10d2eb2&User=tsudakaran&sem=8&type=4"
@@ -17,7 +17,7 @@ DEFAULT_ICAL_URL = "https://www3.primuss.de/stpl/index.php?FH=fhh&Language=de&mo
 @app.route('/timetable', methods=['GET'])
 def get_timetable():
     date_str = request.args.get('date', '')
-    department = request.args.get('department', '')
+    department = request.args.get('department', '').lower()
     time_filter = request.args.get('time', '')
 
     # Resolve URL
